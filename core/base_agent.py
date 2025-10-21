@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timezone
 from pydantic import BaseModel, ValidationError
-from schemas.Message import MCPMessage
-from schemas.Context import TaskContext
+from schemas.message import MCPMessage
+from schemas.context import TaskContext
 
 
 class MCPAgent(ABC):
