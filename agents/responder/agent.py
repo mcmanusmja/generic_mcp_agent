@@ -1,6 +1,9 @@
 import json
 from core.base_agent import MCPAgent
 from schemas.context import TaskContext
+from langchain_core.runnables import Runnable
+from schemas.message import MCPMessage
+from typing import Dict, Any
 
 
 class ResponderAgent(MCPAgent):
@@ -26,3 +29,14 @@ class ResponderAgent(MCPAgent):
                 return json.dumps({"task": context.objective})
             case default:
                 return f"Task Received: {context.objective}"
+
+
+class ResponderAgentRunnable(Runnable):
+    def __init__(self):
+        # super().__init__()
+        self.agent = ResponderAgent()
+
+    def invoke(self, input: Dict[str, Any], config: Any = None) -> Dict[str, Any]:
+        message = MCPMessage.model_validate(input)
+        result = self.agent(message)
+        return result.model_dump()
