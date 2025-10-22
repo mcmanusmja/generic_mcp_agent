@@ -43,7 +43,7 @@ class MCPAgent(ABC):
     def create_response(self, request: MCPMessage, result: dict) -> MCPMessage:
         return MCPMessage(
             sender=self.name,
-            receiver=self.request.sender,
+            receiver=request.sender,
             type="result",
             payload=result,
             timestamp=datetime.now(timezone.utc)
@@ -53,7 +53,7 @@ class MCPAgent(ABC):
     def create_error_response(self, request: MCPMessage, error_type: str, detail: str) -> MCPMessage:
         return MCPMessage(
             sender=self.name,
-            receiver=self.request.sender,
+            receiver=request.sender,
             type="error",
             payload={
                 "error_type": error_type,

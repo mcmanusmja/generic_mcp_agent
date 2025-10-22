@@ -9,5 +9,5 @@ class TaskContext(BaseModel):
     objective: str
     format: Optional[Literal["markdown", "json", "html"]] = "markdown"
     created_at: datetime = Field(
-        default_factory=datetime.now(timezone.utc))
+        default_factory=lambda: datetime.now(timezone.utc))
     language: Optional[str] = "en"

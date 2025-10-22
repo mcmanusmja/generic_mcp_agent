@@ -7,8 +7,21 @@ class ResponderAgent(MCPAgent):
         super().__init__(name="responder")
 
     def run(self, context: TaskContext) -> dict:
-        response_text = f"Received your request to: {context.objective}"
+        message = self.format_response(context)
         return {
             "task_id": context.task_id,
-            "response": response_text
+            "response": message,
+            "format": context.format,
+            "language": "en",
         }
+
+    def format_response(self, context: TaskContext) -> str:
+        match context.format:
+            case "markdown":
+                return f"**Task Received** {context.objective}"
+            case "html":
+                return f"<strong>Task Received</strong> {context.objective}"
+            case "json":
+                return f'{{"task": "{context.objective}}}'
+            case default:
+                return f"Task Received: {context.objective}"

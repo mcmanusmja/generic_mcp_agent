@@ -9,4 +9,4 @@ class MCPMessage(BaseModel):
     type: Literal["task_request", "result", "error"]
     payload: dict
     timestamp: Optional[datetime] = Field(
-        default_factory=datetime.now(timezone.utc))
+        default_factory=lambda: datetime.now(timezone.utc))
