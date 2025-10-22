@@ -4,7 +4,10 @@ from datetime import datetime, timezone
 
 
 class TaskContext(BaseModel):
-    model_config = ConfigDict(strict=True, extra="forbid")
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid"
+    )
     task_id: str
     objective: str
     format: Optional[Literal["markdown", "json", "html"]] = "markdown"

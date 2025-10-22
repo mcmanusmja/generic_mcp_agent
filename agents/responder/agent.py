@@ -1,3 +1,4 @@
+import json
 from core.base_agent import MCPAgent
 from schemas.context import TaskContext
 
@@ -22,6 +23,6 @@ class ResponderAgent(MCPAgent):
             case "html":
                 return f"<strong>Task Received</strong> {context.objective}"
             case "json":
-                return f'{{"task": "{context.objective}}}'
+                return json.dumps({"task": context.objective})
             case default:
                 return f"Task Received: {context.objective}"

@@ -33,9 +33,9 @@ def main():
         receiver="responder",
         type="task_request",
         payload={
-            "task_id": "T-001",
-            "objective": "Generare a summary of benefits",
-            "format": "markdown",
+            "task_id": "T-20251021-001",
+            "objective": "Draft an introductory paragraph on the meaning of life.",
+            "format": "json",
             "language": "en"
         }
     )
